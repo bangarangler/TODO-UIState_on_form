@@ -14,7 +14,7 @@ class App extends Component {
 
   addTodo = newTodo => {
     //debugger;
-    console.log("is firing!");
+    //console.log("is firing!");
     this.setState(prevState => ({
       todos: [...prevState.todos, newTodo]
     }));
@@ -24,20 +24,41 @@ class App extends Component {
     let newList = [];
     this.state.todos.filter(todo => {
       if (todo.id !== id) {
-        console.log(todo);
+        //console.log(todo);
         return newList.push(todo);
       } else {
         return null;
       }
     });
-    console.log(this.state.todos);
+    //console.log(this.state.todos);
     this.setState({ todos: newList });
+  };
+
+  toggleCompleted = id => {
+    this.state.todos.filter(todo => {
+      if (todo.id === id) {
+        console.log(todo);
+        return (todo.completed = !todo.completed);
+      } else {
+        return null;
+      }
+    });
+    //this.setState(prevState => {
+    //return { ...prevState, todos: [...prevState.todos] };
+    //});
+    this.setState(prevState => ({
+      ...prevState.todos
+    }));
   };
 
   render() {
     return (
       <div className={styles.App}>
-        <TodoList todos={this.state.todos} removeTodo={this.removeTodo} />
+        <TodoList
+          todos={this.state.todos}
+          removeTodo={this.removeTodo}
+          toggleCompleted={this.toggleCompleted}
+        />
         <TodoForm addTodo={this.addTodo} />
       </div>
     );

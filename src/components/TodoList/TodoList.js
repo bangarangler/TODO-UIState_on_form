@@ -7,7 +7,14 @@ const todoList = props => {
   return (
     <ul>
       {props.todos.map(todo => {
-        return <Todo key={uuid4()} todo={todo} removeTodo={props.removeTodo} />;
+        return (
+          <Todo
+            key={uuid4()}
+            todo={todo}
+            removeTodo={props.removeTodo}
+            toggleCompleted={props.toggleCompleted}
+          />
+        );
       })}
     </ul>
   );
