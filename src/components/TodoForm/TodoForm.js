@@ -8,7 +8,8 @@ class TodoForm extends React.Component {
     this.state = {
       todo: {
         todoInput: "",
-        completed: false
+        completed: false,
+        canEdit: false
       }
     };
   }

@@ -65,6 +65,20 @@ class App extends Component {
     this.setState({ todos: clearCompleted });
   };
 
+  editTodo = id => {
+    this.state.todos.filter(todo => {
+      if (todo.id === id) {
+        return (todo.canEdit = !todo.canEdit);
+      } else {
+        return null;
+      }
+    });
+    this.setState(prevState => ({
+      ...prevState.todos,
+      todos: [...prevState.todos]
+    }));
+  };
+
   render() {
     return (
       <div className={styles.App}>
@@ -72,6 +86,7 @@ class App extends Component {
           todos={this.state.todos}
           removeTodo={this.removeTodo}
           toggleCompleted={this.toggleCompleted}
+          editTodo={this.editTodo}
         />
         <TodoForm addTodo={this.addTodo} clearAll={this.clearCompleteHandler} />
       </div>

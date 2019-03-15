@@ -13,6 +13,7 @@ const todoList = props => {
             todo={todo}
             removeTodo={props.removeTodo}
             toggleCompleted={props.toggleCompleted}
+            editTodo={props.editTodo}
           />
         );
       })}
