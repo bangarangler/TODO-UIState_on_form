@@ -79,11 +79,19 @@ class App extends Component {
     }));
   };
 
-  updateTodo = upTodo => {
+  updateTodo = (id, upTodo) => {
     //debugger;
     //console.log("is firing!");
     this.setState(prevState => ({
-      todos: [...prevState.todos, upTodo]
+      todos: [
+        ...prevState.todos.map(todo => {
+          if (todo.id === id) {
+            return { ...todo, todoInput: upTodo };
+          } else {
+            return todo;
+          }
+        })
+      ]
     }));
   };
 
