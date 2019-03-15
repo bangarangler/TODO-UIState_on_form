@@ -24,7 +24,7 @@ class TodoForm extends React.Component {
     e.preventDefault();
     let newTodo = this.state.todo;
     newTodo.id = uuid4();
-    console.log("newTodo :", newTodo);
+    //console.log("newTodo :", newTodo);
     this.props.addTodo(newTodo);
     this.setState({ todo: { todoInput: "", completed: false } });
   };
@@ -41,6 +41,7 @@ class TodoForm extends React.Component {
         />
         {this.state.todo.todoInput}
         <button>Add Todo</button>
+        <button onClick={this.props.clearAll}>Clear All Completed</button>
       </form>
     );
   }

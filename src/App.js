@@ -37,7 +37,7 @@ class App extends Component {
   toggleCompleted = id => {
     this.state.todos.filter(todo => {
       if (todo.id === id) {
-        console.log(todo);
+        //console.log(todo);
         return (todo.completed = !todo.completed);
       } else {
         return null;
@@ -47,8 +47,22 @@ class App extends Component {
     //return { ...prevState, todos: [...prevState.todos] };
     //});
     this.setState(prevState => ({
-      ...prevState.todos
+      ...prevState.todos,
+      todos: [...prevState.todos]
     }));
+  };
+
+  clearCompleteHandler = e => {
+    e.preventDefault();
+    let clearCompleted = [];
+    this.state.todos.filter(todo => {
+      if (!todo.completed) {
+        console.log(clearCompleted);
+        clearCompleted.push(todo);
+        return clearCompleted;
+      }
+    });
+    this.setState({ todos: clearCompleted });
   };
 
   render() {
@@ -59,7 +73,7 @@ class App extends Component {
           removeTodo={this.removeTodo}
           toggleCompleted={this.toggleCompleted}
         />
-        <TodoForm addTodo={this.addTodo} />
+        <TodoForm addTodo={this.addTodo} clearAll={this.clearCompleteHandler} />
       </div>
     );
   }
