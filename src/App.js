@@ -79,6 +79,14 @@ class App extends Component {
     }));
   };
 
+  updateTodo = upTodo => {
+    //debugger;
+    //console.log("is firing!");
+    this.setState(prevState => ({
+      todos: [...prevState.todos, upTodo]
+    }));
+  };
+
   render() {
     return (
       <div className={styles.App}>
@@ -87,6 +95,7 @@ class App extends Component {
           removeTodo={this.removeTodo}
           toggleCompleted={this.toggleCompleted}
           editTodo={this.editTodo}
+          updateTodo={this.updateTodo}
         />
         <TodoForm addTodo={this.addTodo} clearAll={this.clearCompleteHandler} />
       </div>

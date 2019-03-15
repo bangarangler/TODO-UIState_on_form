@@ -14,6 +14,7 @@ const todoList = props => {
             removeTodo={props.removeTodo}
             toggleCompleted={props.toggleCompleted}
             editTodo={props.editTodo}
+            updateTodo={props.updateTodo}
           />
         );
       })}
