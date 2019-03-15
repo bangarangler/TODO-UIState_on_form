@@ -57,7 +57,7 @@ class App extends Component {
     let clearCompleted = [];
     this.state.todos.filter(todo => {
       if (!todo.completed) {
-        console.log(clearCompleted);
+        //console.log(clearCompleted);
         clearCompleted.push(todo);
         return clearCompleted;
       }
