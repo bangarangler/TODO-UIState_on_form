@@ -14,7 +14,7 @@ class Todo extends React.Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  handleUpdate = (e) => {
+  handleUpdate = e => {
     e.preventDefault();
     let upTodo = this.state.edit;
     this.props.updateTodo(this.props.todo.id, upTodo);
