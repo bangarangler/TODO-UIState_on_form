@@ -2,15 +2,34 @@ import React, { Component } from "react";
 
 import TodoForm from "./components/TodoForm/TodoForm";
 import TodoList from "./components/TodoList/TodoList";
+import Search from "./components/Search/Search.js";
 import styles from "./App.module.scss";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: []
+      todos: [],
+      searchedTodos: []
+      //selectedTodo: ""
     };
   }
+
+  //handleSearch = searchTodo => {
+  //this.setState(prevState => ({
+  //searchedTodos: [...prevState, searchTodo]
+  //}));
+  //};
+
+  //search = e => {
+  //e.preventDefault();
+  //this.state.todos.filter(td => {
+  //if (td === this.state.searchedTodos) {
+  //this.setState({ selectedTodo: td });
+  //return <h2>{this.state.selectedTodo}</h2>;
+  //}
+  //});
+  //};
 
   addTodo = newTodo => {
     //debugger;
@@ -98,6 +117,11 @@ class App extends Component {
   render() {
     return (
       <div className={styles.App}>
+        <Search
+          todos={this.state.todos}
+          handleSearch={this.handleSearch}
+          search={this.search}
+        />
         <TodoList
           todos={this.state.todos}
           removeTodo={this.removeTodo}
