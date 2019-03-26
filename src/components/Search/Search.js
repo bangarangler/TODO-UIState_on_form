@@ -11,13 +11,15 @@ class Search extends React.Component {
   handleChange = e => {
     e.preventDefault();
     this.setState({ [e.target.name]: e.target.value });
-    this.selectSearch(e);
+    //this.selectSearch(e);
   };
 
   selectSearch = e => {
     e.preventDefault();
-    this.props.handleSearch(this.state.search);
-    this.setState({ search: "" });
+    //this.props.handleSearch(this.state.search);
+    this.props.handleSearchTodos(this.state.search);
+    //this.setState({ search: "" });
+    //this.props.search(e);
   };
 
   render() {
@@ -30,8 +32,9 @@ class Search extends React.Component {
           value={this.state.search}
           onChange={this.handleChange}
           required
+          onKeyUp={this.selectSearch}
         />
-        <button onClick={this.props.search}>Search Todos</button>
+        <h2>{this.props.selectedTodo.todoInput}</h2>
       </div>
     );
   }

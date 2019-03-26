@@ -10,26 +10,31 @@ class App extends Component {
     super(props);
     this.state = {
       todos: [],
-      searchedTodos: []
-      //selectedTodo: ""
+      searchedTodos: [],
+      selectedTodo: []
     };
   }
 
-  //handleSearch = searchTodo => {
-  //this.setState(prevState => ({
-  //searchedTodos: [...prevState, searchTodo]
-  //}));
-  //};
-
-  //search = e => {
-  //e.preventDefault();
-  //this.state.todos.filter(td => {
-  //if (td === this.state.searchedTodos) {
-  //this.setState({ selectedTodo: td });
-  //return <h2>{this.state.selectedTodo}</h2>;
-  //}
-  //});
-  //};
+  handleSearchTodos = searchTodo => {
+    console.log("searchTodo", searchTodo);
+    if (searchTodo === "") {
+      console.log("empty search", searchTodo);
+      this.setState({ searchedTodos: "" });
+      return null;
+    } else {
+      const filtTodo = this.state.todos.filter(td => {
+        console.log("td :", td);
+        if (td.todoInput.includes(searchTodo)) {
+          console.log("inside if", searchTodo);
+          return td;
+        } else {
+          console.log("else :", td);
+          return null;
+        }
+      });
+      this.setState({ searchedTodos: filtTodo });
+    }
+  };
 
   addTodo = newTodo => {
     //debugger;
@@ -119,11 +124,15 @@ class App extends Component {
       <div className={styles.App}>
         <Search
           todos={this.state.todos}
-          handleSearch={this.handleSearch}
-          search={this.search}
+          selectedTodo={this.state.selectedTodo}
+          handleSearchTodos={this.handleSearchTodos}
         />
         <TodoList
-          todos={this.state.todos}
+          todos={
+            this.state.searchedTodos.length > 0
+              ? this.state.searchedTodos
+              : this.state.todos
+          }
           removeTodo={this.removeTodo}
           toggleCompleted={this.toggleCompleted}
           editTodo={this.editTodo}
@@ -136,3 +145,10 @@ class App extends Component {
 }
 
 export default App;
+
+{
+  /*handleSearch={this.handleSearch}*/
+}
+{
+  /*}search={this.search}*/
+}
